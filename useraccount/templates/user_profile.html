@@ -1,0 +1,35 @@
+{% extends 'base_site.html' %}
+{% block content %}
+<div class="row ">
+    <div class="col-sm-12 col-md-2 col-lg-2"></div>
+    <div class="col-sm-12 col-md-8 col-lg-8">
+        <div class="card" style="width:400px">
+            <h2 class="text-center">User Profile Here &nbsp;</h2>
+
+            {% if user.profile_picture %}
+
+            <img class="card-img-top responsive" src="{{ user.profile_picture.url }}" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">User Name: &nbsp;{{user.username}}</h4>
+                <p class="card-text"><strong>First Name: &nbsp;</strong>{{user.first_name}}</p>
+                <p class="card-text"><strong>Last Name: &nbsp;</strong>{{user.last_name}}</p>
+                <p class="card-text"><strong>Email: &nbsp;</strong>{{user.email}}</p>
+                <p class="card-text"><strong>Address: &nbsp;</strong>{{user.address}}</p>
+                <p class="card-text"><strong>Contact: &nbsp;</strong>{{user.contact}}</p>
+
+            </div>
+            <div class="card-foote text-center">
+                {%  if request.user.username == user.username %}
+                <a href="{% url 'user:add_profile' %}" class="btn btn-primary btn-sm ">Eddit Profile</a>
+                {% endif %}
+            </div>
+        {% endif %}
+        </div>
+
+
+        <div class="col-sm-12 col-md-2 col-lg-2"></div>
+
+    </div>
+
+
+    {% endblock content %}

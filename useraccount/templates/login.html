@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class="row">
+    <div class="col-sm-12 col-lg-4 col-md-4">
+
+    </div>
+    <div class="col-sm-12 col-lg-4 col-md-4">
+        <div class="card shadow-sm mt-5">
+            <h2 class="text-center" >Log In</h2>
+            <div class="card-body">
+
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- {% for message in messages %}
+                    <p class="bg-dark text-danger">{{message}}</p>
+                    {% endfor %} -->
+                       {{ form.as_p }}
+                       <input class="btn btn-primary btn-sm w-100" type="submit" value="Log IN">
+                   </form>
+                   <div class="text-center">
+                       
+                    <p><a href="{% url 'user:signup' %}">Register</a></p>
+                    <p><a href="{% url 'post:home' %}">Home</a></p>
+                   </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-4 col-md-4">
+
+    </div>
+
+</div>
+
+{% endblock main %}

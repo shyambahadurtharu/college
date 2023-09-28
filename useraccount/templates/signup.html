@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class="row">
+    <div class="col-sm-12 col-lg-4 col-md-4">
+
+    </div>
+    <div class="col-sm-12 col-lg-4 col-md-4">
+
+        <div class="card shadow-sm mt-5">
+            <h2 class="text-center" >Sign Up</h2>
+            <div class="card-body">
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {% for error in field.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <span class="text-muted">{{ field.help_text}}</span>
+                            {% endif %}
+                        </div>
+                    {% endfor%}
+                 <input class="btn btn-primary btn-sm w-100" type="submit" value="Sign Up">
+                </form>
+                   <div class="text-center">
+                       
+                    <p><a href="{% url 'user:login' %}">Login</a></p> 
+                    <p><a href="{% url 'post:home' %}">Go To Feed</a></p>
+                    
+                   </div>
+            </div>
+
+        </div>
+        
+      </div> 
+    <div class="col-sm-12 col-lg-4 col-md-4">
+
+    </div>
+
+</div>
+
+{% endblock main %}

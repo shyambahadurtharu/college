@@ -1,0 +1,12 @@
+.vl {
+    border-left: 6px solid black;
+    height: 500px;
+  }
+.list_user_chat{
+  padding-left: 80px;
+  list-style: none;
+  
+}
+.list_user_chat li{
+  margin: 10px;
+}

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mqk&=%ar=lp^g$%eofuj+0e@70fi&ho&7$n(cj9jc0bp_(9eny'
-
+SECRET_KEY = config("SECRET_KEY",'django-insecure-+mmtsj5p$6y7*x$g&ix_qc4%j=nzn4@333-ocivh5sp*2g5%@j')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =config("DEBUG", True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +39,8 @@ INSTALLED_APPS = [
     'chat',
     'post',
     'useraccount',
+    'college_detail',
+    'note_book',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'college.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR /"templates", ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,11 +86,11 @@ WSGI_APPLICATION = 'college.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "college_edu",
-        "USER": "college",
-        "PASSWORD": "College@123",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST", "localhost"),
+        "PORT": config("DB_PORT","5432"),
     }
 }
 
@@ -130,11 +131,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIR = [
-   BASE_DIR /"staticfiles" 
-]
-
+STATICFILES_DIRS = [
+   BASE_DIR /"staticfiles"    
+    ]
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "mediafiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "useraccount.User"
