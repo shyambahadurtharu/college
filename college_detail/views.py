@@ -3,15 +3,17 @@ from django.http import HttpResponseRedirect
 from college_detail.forms import CollegeDetailForm
 from college_detail.models import CollegeDetail
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def college_home(request):
     # return HttpResponse("hello college home")
     data= CollegeDetail.objects.all().order_by("-id")
     context={"data":data}
     return render(request, "c_home.html", context)
+@login_required
 def add_college(request):
     forms= CollegeDetailForm(request.POST or None, request.FILES or None)
     if forms.is_valid():
@@ -22,6 +24,7 @@ def add_college(request):
         return HttpResponseRedirect(reverse("college_detail:home"))
     context = {"form":forms}
     return render(request, "add_college.html", context)
+@login_required
 def edit_college(request, college_id):
     college=get_object_or_404(CollegeDetail, id= college_id, user=request.user)
     form=CollegeDetailForm(request.POST or None, request.FILES or None, instance=college)
@@ -31,7 +34,7 @@ def edit_college(request, college_id):
         return HttpResponseRedirect(reverse("college_detail:home"))
     context={"form": form}
     return render(request, "edit.html", context )
-
+@login_required
 def delete_college(request):
     college_id = request.POST.get("college_id")
     post = get_object_or_404(CollegeDetail, id=college_id, user = request.user)
