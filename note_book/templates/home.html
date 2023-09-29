@@ -1,0 +1,16 @@
+{% extends 'base_site.html' %}
+{% block content %}
+<div class="row ">
+    <div class="col-sm-12 col-md-1 col-lg-1"></div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <center><h6>Your note Here...</h6></center>
+       <a href="{% url 'note_book:add_note' %}" class="btn btn-sm bg-success">add</a>
+    </div>
+    <div class="col-sm-12 col-md-5 col-lg-5"></div>
+
+</div>
+
+{% endblock content %}
+
+
+

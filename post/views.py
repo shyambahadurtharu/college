@@ -85,4 +85,4 @@ def delete_comment(request, comment_id):
     post_comment = get_object_or_404(Comment, id=comment_id, user = request.user)
     
     post_comment.delete()
-    return render(request,"home_feed.html")
+    return HttpResponseRedirect(reverse("post:home"))

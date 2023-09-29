@@ -23,7 +23,7 @@ class Semester(models.Model):
         return self.semester_name
     
 class NoteBook(models.Model):
-    file_upload=models.FileField(max_length=250)
+    file_upload=models.FileField(upload_to="note_upload/", blank=False, null=False)
     course_name=models.CharField(max_length=100)
     level_id=models.ForeignKey(Level, on_delete=models.SET_NULL, null=True)
     semester_id=models.ForeignKey(Semester, on_delete=models.SET_NULL, null=True)

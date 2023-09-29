@@ -22,7 +22,9 @@
                 {% endif %}  
                 {% if post.picture.url and post.caption %}
                   <img class="w-100 img-responsive" src="{{post.picture.url}}" alt="{{post.caption}}">
-                  <p>{{ post.caption }}</p>
+                  <div class="bg-light">
+                    <p >{{ post.caption }}</p>
+                  </div>
                
                 {% else %}
                   <p>{{ post.caption }}</p>

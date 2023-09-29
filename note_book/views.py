@@ -3,6 +3,8 @@ from note_book.forms import NoteForm
 # Create your views here.
 from django.http import JsonResponse
 from note_book.models import Semester
+def home(request):
+    return render(request, "home.html")
 def add_note(request):
     form = NoteForm(request.POST or None, request.FILES or None)
     context={'form':form}
