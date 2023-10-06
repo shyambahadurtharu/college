@@ -5,6 +5,39 @@
     <div class="col-sm-12 col-md-6 col-lg-6">
         <center><h6>Your note Here...</h6></center>
        <a href="{% url 'note_book:add_note' %}" class="btn btn-sm bg-success">add</a>
+       <div class="table-responsive">
+       <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>S.N.</th>
+                <th>Level</th>
+                <th>Class/Semester</th>
+                <th>Course Name</th>
+                <th>Pdf File</th>
+                <th>Action</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            
+        
+            {% for note in notebook %}
+                    <tr>
+                        <td>1</td>
+                        <td>{{note.level_id}}</td>
+                        <td>{{note.semester_id}}</td>
+                        <td>{{note.course_name}}</td>
+                        <td><embed src="media/note_upload/,{{ note.file_upload }}" type="application/pdf" width="100%" height="70px"></td>
+                        <td></td>
+                    </tr>
+               
+            {% endfor %}
+       
+           
+           
+        </tbody>
+       </table>
+    </div>
     </div>
     <div class="col-sm-12 col-md-5 col-lg-5"></div>
 
